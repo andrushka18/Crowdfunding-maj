@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebSite_Crowdfunding.Models.Projet>
+    @using WebSite_Crowdfunding.Usefulls
+
+@{
+    ViewBag.Title = "Liste Projet";
+}
+
+<h2>Liste_Projet</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nom)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PlafondFinance)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UrlVideo)
+    </td>
+
+    @if (SessionTool.utilisateur != null)
+    {
+        <td>
+
+            @Html.ActionLink("Detailler", "DetailProjet", new { id = item.IdProjet }) |
+
+        </td>
+    }
+    </tr>
+        }
+
+        </table>
