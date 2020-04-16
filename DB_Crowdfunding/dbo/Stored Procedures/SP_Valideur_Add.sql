@@ -4,4 +4,4 @@
 	@commentaire NVARCHAR(50)
 
 AS
-	INSERT INTO [Valideur]([Status],[Commentaire]) OUTPUT inserted.UtilisateurId VALUES (@status, @commentaire)
+	INSERT INTO [Valideur]([Status],[Commentaire]) OUTPUT inserted.ValideurId VALUES (@status, @commentaire)

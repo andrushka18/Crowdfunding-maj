@@ -1,0 +1,109 @@
+﻿@model IEnumerable<CrowdfundingAPI.Models.Projet>
+    @using CrowdfundingAPI.Services.Mapper
+
+@{
+    ViewBag.Title = "ListProjet";
+}
+
+<h2>ListProjet</h2>
+
+<p>
+    @Html.ActionLink("Ajouter", "Ajouter")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdProjet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlafondFinance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroCompte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UrlVideo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.IdProjet)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nom)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PlafondFinance)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NumeroCompte)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UrlVideo)
+    </td>
+    @if (SessionTool.utilisateur != null)
+        {
+        <td>
+           
+            @Html.ActionLink("Details", "Details", new { id = item.IdProjet }) 
+           
+        </td>
+        }
+    @if (SessionTool.utilisateur.NomUtilisateur != null && SessionTool.utilisateur.Role == "Admin")
+        {
+        <td>
+            @Html.ActionLink("Modifier", "Modifier", new { id = item.IdProjet }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IdProjet }) |
+            @Html.ActionLink("Supprimer", "Supprimer", new { id = item.IdProjet })
+        </td>
+        }
+ </tr>
+}
+
+</table>
+<script type="text/javascript">
+    function getForm(id) {
+        let form_fn = document.getElementById("fn_td_" + id);
+        let old_fn = form_fn.textContent;
+        let input_fn = document.createElement("input");
+        input_fn.setAttribute("name", "fn_input_" + id);
+        form_fn.appendChild(input_fn);
+
+        let form_ln = document.getElementById("ln_td_" + id);
+        let old_fn = form_fn.textContent;
+        let input_ln = document.createElement("input");
+        input_ln.setAttribute("name", "ln_input_" + id);
+        form_ln.appendChild(input_ln);
+
+        let form_sub = document.getElementById("sub_"+id)
+        let submit = document.createElement("button");
+        submit.textContent = "Valider";
+        submit.addEventListener("click", function () {
+            edit({ "ID": id, "FirstName": input_fn.value, "LastName": input_ln.value });
+        });
+        form_sub.appendChild(submit);
+    }
+
+    function edit(object) {
+        console.log(object);
+        $.ajax({
+            url: '@Url.Action("Edit", "Employee")',
+            type: 'POST',
+            data: object,
+            dataType : 'json',
+            success: function (data) {
+                console.log("Ok!");
+                if (data.IsSuccess)
+                    window.location.href = data.Url;
+                else
+                    console.log("Fail :/")
+            }
+        });
+    }
+</script>

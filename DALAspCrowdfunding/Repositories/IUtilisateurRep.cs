@@ -2,9 +2,10 @@
 {
     public interface IUtilisateurRep<TKey, T>: IRep<TKey, T> where T : class
     {
-        void ChangePassword(TKey id, string password);
+        void ChangePassword(TKey id, string Password);
 
-        void  Check(string username, string password);
+        TKey  Check(string NomUtilisateur, string Password);
+        
         void SetAdmin(TKey id);
         void UnsetAdmin(TKey id);
     }

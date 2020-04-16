@@ -11,8 +11,10 @@ namespace DAL_Crowdfunding.Repositories
 
         void ChangePassword(TKey id, string password);
 
-        TKey Check(string username, string password);
+        TKey Check(string NomUtilisateur, string password);
+        void Registration(T entity);
         void SetAdmin(TKey id);
         void UnsetAdmin(TKey id);
+        
     }
 }

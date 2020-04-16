@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DAL_Crowdfunding.Models
 {
-    public class Societe:Employe
+    public class Societe
     {
         public int NumeroTVA { get; set; }
         public string Description { get; set; }

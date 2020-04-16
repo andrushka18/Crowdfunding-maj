@@ -1,0 +1,21 @@
+﻿@model CrowdfundingASP.Models.Valideur
+
+    <div class="jumbotron">
+        <h1>Liste Validation </h1>
+        <h4 class="alert-danger">@ViewBag.ErrorMessage</h4>
+
+
+        <p>............................................................</p>
+
+        <p>
+            @Html.ActionLink("Liste Validation", "Listvalidation", "Valideur")
+        </p>
+
+        <p>............................................................</p>
+
+        <p>@Html.ActionLink("Retour", "Index", "Valideur")</p>
+        <p>@Html.ActionLink("Acceuil", "Index", "Home")</p>
+
+
+
+    </div>

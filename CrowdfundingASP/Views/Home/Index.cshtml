@@ -1,0 +1,26 @@
+﻿@*<h2>Bienvenue</h2>*@
+<div class="jumbotron">
+    <h1>Bienvenue </h1>
+    <h4 class="alert-danger">@ViewBag.ErrorMessage</h4>
+
+    
+        <p>vous n'avez pas encore de compte, veuillez-vous inscrire</p>
+
+        <p>
+            @Html.ActionLink("Inscription", "Inscription", "Home")
+        </p>
+
+        <p>vous avez un compte, veuillez-vous connecter</p>
+
+        <p>@Html.ActionLink("Connexion", "NomUtilisateur", "Home")</p>
+    
+
+
+</div>
+<div class="list-group">
+    <span>@Html.ActionLink("Employé", "Index", "Employe")</span>  |  
+    <span>@Html.ActionLink("Utilisateur", "Index", "Utilisateur")</span>  |  
+    <span>@Html.ActionLink("Projet", "Index", "Projet")</span>  |  
+    <span>@Html.ActionLink("Financement", "Index", "Financeur")</span>  |  
+    <span>@Html.ActionLink("Role", "Index", "Droit")</span>
+</div>

@@ -1,4 +1,5 @@
 ﻿using DAL_Crowdfunding.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,7 +9,7 @@ namespace DAL_Crowdfunding.Repositories
 {
     public class SocieteRepository : ISocieteRepository<int, Societe>
     {
-        private string _connecting = ConfigurationManager.ConnectionStrings["Crowdfunding"].ConnectionString;
+        private string _connecting = ConfigurationManager.ConnectionStrings["DB_Crowdfunding"].ConnectionString;
         public void Add(Societe entity)
         {
             using (SqlConnection connection = new SqlConnection(_connecting))
@@ -56,7 +57,7 @@ namespace DAL_Crowdfunding.Repositories
                             yield return new Societe()
                             {
                                 NumeroTVA = (int)reader["NumeroTVA"],
-                                Description = (string)reader["Description"],
+                                Description = (string)reader["Description"]
 
 
                             };
@@ -74,7 +75,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Societe_GetById";
-                    command.Parameters.AddWithValue("utilisateurId", id);
+                    command.Parameters.AddWithValue("@utilisateurId", id);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -84,7 +85,7 @@ namespace DAL_Crowdfunding.Repositories
                             {
 
                                 NumeroTVA = (int)reader["NumeroTVA"],
-                                Description = (string)reader["Description"],
+                                Description = (string)reader["Description"]
 
                             };
                         }

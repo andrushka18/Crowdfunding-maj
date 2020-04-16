@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DALAspCrowdfunding.Models
 {
-   public class Societe:Employe
+   public class Societe
     {
         public int NumeroTVA { get; set; }
         public string Description { get; set; }

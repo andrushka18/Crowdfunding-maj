@@ -1,9 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Utilisateur_Check]
 	@nomUtilisateur NVARCHAR(50),
-	@motDePasse NVARCHAR(50),
-	@utilisateurId INT OUTPUT
+	@password NVARCHAR(50),
+	@utilisateurId INT OUTPUT,
+	@IsActive BIT OUTPUT
 AS
-	SET @utilisateurId = 0;
-	IF EXISTS (SELECT UtilisateurId FROM Utilisateur WHERE NomUtilisateur = @nomUtilisateur AND [Password] = dbo.SF_HashPassword(@motDePasse))
+	SET @IsActive = 1;
+	IF EXISTS (SELECT UtilisateurId FROM Utilisateur WHERE NomUtilisateur = @nomUtilisateur AND [Password] = dbo.SF_HashPassword(@password))
 		SELECT @utilisateurId = UtilisateurId FROM Utilisateur WHERE NomUtilisateur = @nomUtilisateur
-RETURN 0
+RETURN 1

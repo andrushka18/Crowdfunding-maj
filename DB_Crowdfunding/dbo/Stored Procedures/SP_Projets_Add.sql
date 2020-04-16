@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Projets_Add]
 	@nom NVARCHAR(50),
-	@plafondFinance money = 0,
+	@plafondFinance DECIMAL(18),
 	@numeroCompte NVARCHAR(50),
 	@urlVideo NVARCHAR(50)
 

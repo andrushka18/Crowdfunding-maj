@@ -9,7 +9,7 @@ namespace DAL_Crowdfunding.Repositories
 {
     public class EmployeRepository : IEmployeRepository<int, Employe>
     {
-        private string _connecting = ConfigurationManager.ConnectionStrings["Crowdfunding"].ConnectionString;
+        private string _connecting = ConfigurationManager.ConnectionStrings["DB_Crowdfunding"].ConnectionString;
         public void Add(Employe entity)
         {
             using (SqlConnection connection = new SqlConnection(_connecting))
@@ -19,11 +19,13 @@ namespace DAL_Crowdfunding.Repositories
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Employe_Add";
                     command.Parameters.AddWithValue("@NN", entity.NumeroNational);
-                    command.Parameters.AddWithValue("@datedengagement", entity.Date);
+                    command.Parameters.AddWithValue("@dateDEngagement", entity.Date);
                     connection.Open();
-                    entity.UtilisateurId = (int)command.ExecuteScalar();
+                    entity.NumeroNational = (int)command.ExecuteScalar();
+                   
                 }
             }
+            
         }
 
         public void Delete(int id)
@@ -34,7 +36,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Employe_Delete";
-                    command.Parameters.AddWithValue("@utilisateurId", id);
+                    command.Parameters.AddWithValue("@NN", id);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -50,15 +52,15 @@ namespace DAL_Crowdfunding.Repositories
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Employe_GetAll";
                     connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    using (SqlDataReader reader=command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             yield return new Employe()
                             {
-                                UtilisateurId = (int)reader["UtilisateurId"],
+                                
                                 NumeroNational = (int)reader["NumeroNational"],
-                                Date = (DateTime)reader["DateEngagement"],
+                                Date = (DateTime)reader["DateDEngagement"],
 
                             };
                         }
@@ -75,7 +77,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Employe_GetById";
-                    command.Parameters.AddWithValue("utilisateurId", id);
+                    command.Parameters.AddWithValue("@NumeroNational", id);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -83,9 +85,9 @@ namespace DAL_Crowdfunding.Repositories
                         {
                             return new Employe()
                             {
-                                UtilisateurId = (int)reader["UtilisateurId"],
+                                
                                 NumeroNational = (int)reader["NumeroNational"],
-                                Date = (DateTime)reader["DateEngagement"],
+                                Date = (DateTime)reader["DateDEngagement"],
 
                             };
                         }
@@ -106,7 +108,6 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Employe_Update";
-                    command.Parameters.AddWithValue("@utilisateurId", id);
                     command.Parameters.AddWithValue("@NN", entity.NumeroNational);
                     command.Parameters.AddWithValue("@dateDEngagement", entity.Date);
                     connection.Open();

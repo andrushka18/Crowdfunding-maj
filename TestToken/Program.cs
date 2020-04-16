@@ -21,7 +21,7 @@ namespace TestToken
             Utilisateur u = new Utilisateur()
             {
                 Nom = "Andre",
-                Id = 1,
+                UtilisateurId = 1,
                
             };
 
@@ -44,7 +44,7 @@ namespace TestToken
 
     public class Utilisateur
     {
-        public int Id { get; set; }
+        public int UtilisateurId { get; set; }
         public string Nom { get; set; }
        
     }

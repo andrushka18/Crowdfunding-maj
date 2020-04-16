@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Palier_Add]
 
-	@montant money = 0,
+	@montant Decimal(10),
 	@prime NVARCHAR(50)
 
 AS

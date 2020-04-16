@@ -1,4 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Valideur_Delete]
-	@utilisateurId int
+	@valideurId int
 AS
-	DELETE FROM [Valideur] WHERE [UtilisateurId] = @utilisateurid
+	DELETE FROM [Valideur] WHERE [ValideurId] = @valideurId

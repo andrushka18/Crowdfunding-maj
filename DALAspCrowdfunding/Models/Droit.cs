@@ -9,7 +9,7 @@ namespace DALAspCrowdfunding.Models
     public class Droit
     {
         public int IdDroit { get; set; }
-        public string NomDroit { get; set; }
+        public string Role { get; set; }
         
     }
 }

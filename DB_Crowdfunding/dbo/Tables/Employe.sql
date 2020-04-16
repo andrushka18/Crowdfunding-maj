@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Employe] (
-    [NumeroNational]  INT  IDENTITY (1, 1) NOT NULL,
+    [NumeroNational]  Numeric  IDENTITY (1, 1) NOT NULL,
     [UtilisateurId]   INT  NOT NULL,
     [IdProjet]        INT  NOT NULL,
     [NumeroTVA]       INT  NOT NULL,

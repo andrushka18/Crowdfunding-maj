@@ -1,0 +1,25 @@
+﻿@model IEnumerable<CrowdfundingASP.Models.Employe>
+
+<div class="jumbotron">
+    <h1>Liste Employé </h1>
+    <h4 class="alert-danger">@ViewBag.ErrorMessage</h4>
+
+
+    <p>............................................................</p>
+
+    <p>
+        @Html.ActionLink("Liste Employe", "ListEmploye", "Employe")
+    </p>
+
+    <p>............................................................</p>
+
+    <p>@Html.ActionLink("Retour", "Index", "Employe")</p>
+    <p>@Html.ActionLink("Acceuil", "Index", "Home")</p>
+
+
+
+</div>
+
+
+<p>@Html.ActionLink("Acceuil", "Index", "Home")</p>
+

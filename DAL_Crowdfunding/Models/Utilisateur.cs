@@ -12,7 +12,8 @@ namespace DAL_Crowdfunding.Models
         public string Prenom { get; set; }
         public string NomUtilisateur { get; set; }
         public string Password { get; set; }
+        public string Role { get; set; }
         public bool IsActive { get; set; }
-        public bool IsAdmin { get; set; }
+      
     }
 }

@@ -1,25 +1,27 @@
 ﻿using DALAspCrowdfunding.Models;
+using IdentityModel.Client;
 using Newtonsoft.Json;
+using OpenQA.Selenium.Remote;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net;
+using Swashbuckle.Swagger;
 using System.Net.Http.Headers;
+using System.Web.Helpers;
 
 namespace DALAspCrowdfunding.Repositories
 {
     public class ProjetASPRep : IProjetRep<int, Projet>
     {
-        private static IProjetRep<int, Projet> _entity;
-        public static IProjetRep<int, Projet> Entity
-        {
-            get { return _entity ?? (_entity = new ProjetASPRep()); }
-        }
+      
 
         public IEnumerable<Projet> Get()
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("http://localhost:44356/api/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -36,7 +38,7 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -54,7 +56,7 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -70,7 +72,7 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -83,11 +85,11 @@ namespace DALAspCrowdfunding.Repositories
             }
         }
 
-        void IRep<int, Projet>.Add(Projet entity)
+        public void Add(Projet entity)
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -99,20 +101,23 @@ namespace DALAspCrowdfunding.Repositories
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
-                JsonConvert.DeserializeObject<Projet>(json);
+                 JsonConvert.DeserializeObject<Projet>(json);
             }
         }
 
-        void IRep<int, Projet>.Update(int id, Projet entity)
+        public void Update(int id, Projet entity)
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+                string jsonContent = JsonConvert.SerializeObject(entity);
+                HttpContent httpContent = new StringContent(jsonContent);
+                httpContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
 
-                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Projet").Result;
+                HttpResponseMessage httpResponseMessage = httpClient.PutAsync("projet/id" + id, httpContent).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
@@ -120,11 +125,11 @@ namespace DALAspCrowdfunding.Repositories
             }
         }
 
-        void IRep<int, Projet>.Delete(int id)
+        public void Delete(int id)
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -135,5 +140,7 @@ namespace DALAspCrowdfunding.Repositories
                 JsonConvert.DeserializeObject<Projet>(json);
             }
         }
+
+       
     }
 }

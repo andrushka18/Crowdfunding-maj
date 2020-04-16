@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Financeur_Add]
 
-	@montant money = 0,
+	@montant Decimal(10),
 	@prime NVARCHAR(50)
 
 AS
-	INSERT INTO [Financeur]([Montant],[Prime]) OUTPUT inserted.IdFinanceur VALUES (@montant, @prime)
+	INSERT INTO [Financeur]([Montant],[Prime]) OUTPUT inserted.FinanceurId VALUES (@montant, @prime)

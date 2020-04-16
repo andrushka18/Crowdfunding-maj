@@ -1,0 +1,23 @@
+﻿@model CrowdfundingASP.Models.Financeur
+
+<div class="jumbotron">
+    <h1>Liste Financement </h1>
+    <h4 class="alert-danger">@ViewBag.ErrorMessage</h4>
+
+
+    <p>............................................................</p>
+
+    <p>
+        @Html.ActionLink("Liste Financement", "ListFinancement", "Financeur")
+    </p>
+
+    <p>............................................................</p>
+
+    <p>@Html.ActionLink("Retour", "Index", "Financeur")</p>
+    <p>@Html.ActionLink("Acceuil", "Index", "Home")</p>
+
+
+
+</div>
+
+<p>@Html.ActionLink("Acceuil", "Index", "Home")</p>

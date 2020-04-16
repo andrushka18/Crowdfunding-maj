@@ -63,6 +63,7 @@
     <Folder Include="dbo\Functions\" />
     <Folder Include="dbo\Stored Procedures\" />
     <Folder Include="Security\" />
+    <Folder Include="dbo\Script" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Palier.sql" />
@@ -77,17 +78,17 @@
     <Build Include="dbo\Functions\SF_HashPassword.sql" />
     <Build Include="dbo\Stored Procedures\SP_Utilisateur_Check.sql" />
     <Build Include="dbo\Stored Procedures\SP_Utilisateur_ChangePassword.sql" />
-    <Build Include="dbo\Stored Procedures\PS_Employe_Delete.sql">
+    <Build Include="dbo\Stored Procedures\SP_Employe_Delete.sql">
       <AnsiNulls>Off</AnsiNulls>
       <QuotedIdentifier>Off</QuotedIdentifier>
     </Build>
     <Build Include="dbo\Stored Procedures\SP_Utilisateur_Delete.sql" />
-    <Build Include="dbo\Stored Procedures\PS_Employe_GetAll.sql">
+    <Build Include="dbo\Stored Procedures\SP_Employe_GetAll.sql">
       <AnsiNulls>Off</AnsiNulls>
       <QuotedIdentifier>Off</QuotedIdentifier>
     </Build>
     <Build Include="dbo\Stored Procedures\SP_Utilisateur_Update.sql" />
-    <Build Include="dbo\Stored Procedures\PS_Employe_GetById.sql">
+    <Build Include="dbo\Stored Procedures\SP_Employe_GetById.sql">
       <AnsiNulls>Off</AnsiNulls>
       <QuotedIdentifier>Off</QuotedIdentifier>
     </Build>
@@ -156,5 +157,13 @@
     <Build Include="dbo\Stored Procedures\SP_Utilisateur_UnsetAdmin.sql" />
     <Build Include="dbo\Stored Procedures\SP_Utilisateur_Add.sql" />
     <Build Include="Security\Permissions.sql" />
+    <Build Include="dbo\Stored Procedures\SP_Login.sql" />
+    <Build Include="dbo\Stored Procedures\SP_Registration.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="DB_Crowdfunding.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="dbo\Script\AddDefaultAdmin.sql" />
   </ItemGroup>
 </Project>

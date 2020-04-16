@@ -1,4 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Financeur_GetById]
-	@utilisateurId int
+	@financeurId int
 AS
-	SELECT UtilisateurId, IdProjet, Montant, Prime FROM [Financeur] WHERE [UtilisateurId] = @utilisateurId
+	SELECT * FROM [Financeur] WHERE [FinanceurId] = @financeurId

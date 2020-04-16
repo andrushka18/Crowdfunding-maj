@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Societe_Add]
 
-	@numeroTVA INT = 0,
+	@numeroTVA INT,
 	@description NVARCHAR(50)
 
 AS
