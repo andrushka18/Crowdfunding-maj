@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrowdfundingASP", "Crowdfun
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrowdfundingAPI", "CrowdfundingAPI\CrowdfundingAPI.csproj", "{962641C8-9047-4821-A3DC-B535F74AF738}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrowdfundingTest", "CrowdfundingTest\CrowdfundingTest.csproj", "{5E426826-3EFC-4EAD-A04F-AB3DA0E61C8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{962641C8-9047-4821-A3DC-B535F74AF738}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{962641C8-9047-4821-A3DC-B535F74AF738}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{962641C8-9047-4821-A3DC-B535F74AF738}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{5E426826-3EFC-4EAD-A04F-AB3DA0E61C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E426826-3EFC-4EAD-A04F-AB3DA0E61C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E426826-3EFC-4EAD-A04F-AB3DA0E61C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E426826-3EFC-4EAD-A04F-AB3DA0E61C8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

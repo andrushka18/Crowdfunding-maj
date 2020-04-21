@@ -14,7 +14,8 @@ namespace CrowdfundingASP.Controllers
         // GET: Valideur
         public ActionResult Index()
         {
-            return View();
+            var D = _service.Get();
+            return View(D);
         }
         // GET: /Valideur
         [HttpGet]
@@ -37,31 +38,48 @@ namespace CrowdfundingASP.Controllers
         }
 
         // POST: api/Valideur
-        [HttpPost]
+        [HttpGet]
+        public ActionResult Add()
+        {
+            var D = _service.Get();
+            return View(D);
+        }
 
+        [HttpPost]
 
         public ActionResult Add(Valideur valide)
         {
             _service.Add(valide);
-            return View(valide);
+            return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var D = _service.Get(id);
+            return View(D);
+        }
 
-        // PUT: Valideur/5
         [HttpPut]
+
         public ActionResult Edit(int id, Valideur valide)
         {
             _service.Update(id, valide);
-            return View(id);
-
+            return RedirectToAction("Index");
         }
-        // DELETE: /Valideur/5
-        [HttpDelete]
 
+
+        [HttpGet]
+        public ActionResult Delete(int id, Valideur valide)
+        {
+            var D = _service.Get(id);
+            return View(D);
+        }
+        [HttpDelete]
         public ActionResult Delete(int id)
         {
             _service.Delete(id);
-            return View(id);
+            return RedirectToAction("Index");
         }
 
 

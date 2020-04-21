@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DALAspCrowdfunding.Models
 {
-    public class InscriptionUtilisateur:Utilisateur
+    public class InscriptionUtilisateur
     {
         [Required]
         [MaxLength(50)]
@@ -19,7 +19,7 @@ namespace DALAspCrowdfunding.Models
         public string Prenom { get; set; }
         [Required]
         [EmailAddress]
-        [MaxLength(320)]
+        [MaxLength(50)]
         [Display(Name = "Nom d'utilisateur")]
         public string NomUtilisateur { get; set; }
         [DataType("password")]
@@ -31,5 +31,6 @@ namespace DALAspCrowdfunding.Models
         [Display(Name = "Répétez le mot de passe")]
         [MaxLength(20)]
         public string PwdRepeat { get; set; }
+        public string Role { get; set; }
     }
 }

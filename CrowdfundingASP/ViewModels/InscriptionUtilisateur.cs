@@ -15,7 +15,7 @@ namespace CrowdfundingASP.ViewModels
         public string Prenom { get; set; }
         [Required]
         [EmailAddress]
-        [MaxLength(320)]
+        [MaxLength(50)]
         [Display(Name = "Nom d'utilisateur")]
         public string NomUtilisateur { get; set; }
         [DataType("password")]

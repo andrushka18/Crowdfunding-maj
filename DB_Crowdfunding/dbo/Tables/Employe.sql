@@ -3,7 +3,7 @@
     [UtilisateurId]   INT  NOT NULL,
     [IdProjet]        INT  NOT NULL,
     [NumeroTVA]       INT  NOT NULL,
-    [DateDEngagement] DATE NULL,
+    [DateDEngagement] DATE NOT NULL,
     CONSTRAINT [PK_Employe] PRIMARY KEY CLUSTERED ([NumeroNational] ASC),
     CONSTRAINT [FK_Employe_Projets] FOREIGN KEY ([IdProjet]) REFERENCES [dbo].[Projets] ([IdProjet]) ON DELETE CASCADE,
     CONSTRAINT [FK_Employe_Societe] FOREIGN KEY ([NumeroTVA]) REFERENCES [dbo].[Societe] ([NumeroTVA]) ON DELETE CASCADE,

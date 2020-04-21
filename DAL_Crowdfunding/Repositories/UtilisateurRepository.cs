@@ -91,8 +91,16 @@ namespace DAL_Crowdfunding.Repositories
                 cmd.Parameters.AddWithValue("@nomUtilisateur", NomUtilisateur);
                 cmd.Parameters.AddWithValue("@password", Password);
                
-                cmd.Parameters.AddWithValue("@utilisateurId", DbType.Int32).Direction = ParameterDirection.Output;
-                cmd.ExecuteNonQuery();
+                //cmd.Parameters.AddWithValue("@utilisateurId", DbType.Int32).Direction = ParameterDirection.Output;
+                using (SqlDataReader reader= cmd.ExecuteReader())
+                {
+                    if (!reader.HasRows)
+                        return -1;
+
+                    reader.Read();
+                    return (int)reader["UtilisateurId"];
+                }
+                //cmd.ExecuteReader();
                 return (int)cmd.Parameters["UtilisateurId"].Value;
             }
         }
@@ -161,9 +169,9 @@ namespace DAL_Crowdfunding.Repositories
                                 UtilisateurId = (int)reader["UtilisateurId"],
                                 Nom = (string)reader["Nom"],
                                 Prenom = (string)reader["Prenom"],
-                                NomUtilisateur = (string)reader["NomUtilisateur"],
-                                Password = "********",
-                                Role = (string)reader["Role"]
+                                //--NomUtilisateur = (string)reader["NomUtilisateur"],
+                                //--Password = "********",
+                                //--Role = (string)reader["Role"]
                                
                             };
                         }

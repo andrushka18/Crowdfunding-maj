@@ -1,8 +1,16 @@
-﻿@*<h2>Bienvenue</h2>*@
+﻿
+
+@{
+    ViewBag.Title = "Page d'acceuil";
+}
+
+
+@*<h2>Bienvenue</h2>*@
 <div class="jumbotron">
     <h1>Bienvenue </h1>
     <h4 class="alert-danger">@ViewBag.ErrorMessage</h4>
 
+   
     
         <p>vous n'avez pas encore de compte, veuillez-vous inscrire</p>
 
@@ -16,11 +24,12 @@
     
 
 
+
+
+
+    <p>@Html.ActionLink("Liste des Utilisateur", "Index", "Utilisateur")</p>
+    <h2>Index</h2>
+
 </div>
-<div class="list-group">
-    <span>@Html.ActionLink("Employé", "Index", "Employe")</span>  |  
-    <span>@Html.ActionLink("Utilisateur", "Index", "Utilisateur")</span>  |  
-    <span>@Html.ActionLink("Projet", "Index", "Projet")</span>  |  
-    <span>@Html.ActionLink("Financement", "Index", "Financeur")</span>  |  
-    <span>@Html.ActionLink("Role", "Index", "Droit")</span>
-</div>
+
+

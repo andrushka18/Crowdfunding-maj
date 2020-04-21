@@ -182,18 +182,19 @@ namespace CrowdfundingAPI.Services.Mapper
 
             };
         }
-        //public static Utilisateur SignInToUser(this InscriptionUtilisateur iu)
-        //{
-        //    return new Utilisateur
-        //    {
-        //        Nom = iu.Nom,
-        //        Prenom = iu.Prenom,
-        //        NomUtilisateur = iu.NomUtilisateur,
-        //        Password = iu.Password,
+        public static Utilisateur Inscription(this InscriptionUtilisateur iu)
+        {
+            return new Utilisateur
+           {
+               Nom = iu.Nom,
+               Prenom = iu.Prenom,
+               NomUtilisateur = iu.NomUtilisateur,
+               Password = iu.Password,
+               Role = iu.Role
                 
                
 
-        //    };
-        //}
+          };
+        }
     }
 }

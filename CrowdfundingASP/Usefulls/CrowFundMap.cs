@@ -19,7 +19,7 @@ namespace CrowdfundingASP.Usefulls
                 NomUtilisateur = user.NomUtilisateur,
                 Password = user.Password,
                 Role = user.Role,
-                IsActive = user.IsActive,
+             
                 
 
             };
@@ -34,7 +34,7 @@ namespace CrowdfundingASP.Usefulls
                 NomUtilisateur = user.NomUtilisateur,
                 Password = user.Password,
                 Role = user.Role,
-                IsActive = user.IsActive,
+               
                 
             };
         }
@@ -186,49 +186,49 @@ namespace CrowdfundingASP.Usefulls
 
             };
         }
-        public static B.CompteUtilisateur ToASP(this CrowdDAL.CompteUtilisateur s)
+        //public static B.CompteUtilisateur ToASP(this CrowdDAL.CompteUtilisateur s)
+        //{
+        //    return new B.CompteUtilisateur
+        //    {
+        //        NomUtilisateur = s.NomUtilisateur,
+        //        Password = s.Password,
+
+
+        //    };
+        //}
+        //public static CrowdDAL.CompteUtilisateur ToDAL(this B.CompteUtilisateur s)
+        //{
+        //    return new CrowdDAL.CompteUtilisateur
+        //    {
+
+        //        NomUtilisateur = s.NomUtilisateur,
+        //        Password = s.Password,
+
+
+        //    };
+        //}
+        //public static B.InscriptionUtilisateur ToASP(this CrowdDAL.Utilisateur s)
+        //{
+        //    return new B.InscriptionUtilisateur
+        //    {
+        //        Nom = s.Nom,
+        //        Prenom = s.Prenom,
+        //        NomUtilisateur = s.NomUtilisateur,
+        //        Password = s.Password,
+
+
+        //    };
+        //}
+        public static CrowdDAL.Utilisateur ToDAL(this B.InscriptionUtilisateur s)
         {
-            return new B.CompteUtilisateur
-            {
-                NomUtilisateur = s.NomUtilisateur,
-                Password = s.Password,
-
-
-            };
-        }
-        public static CrowdDAL.CompteUtilisateur ToDAL(this B.CompteUtilisateur s)
-        {
-            return new CrowdDAL.CompteUtilisateur
-            {
-
-                NomUtilisateur = s.NomUtilisateur,
-                Password = s.Password,
-
-
-            };
-        }
-        public static B.InscriptionUtilisateur ToASP(this CrowdDAL.InscriptionUtilisateur s)
-        {
-            return new B.InscriptionUtilisateur
-            {
-                Nom=s.Nom,
-                Prenom = s.Prenom,   
-                NomUtilisateur = s.NomUtilisateur,
-                Password = s.Password,
-                PwdRepeat =s.PwdRepeat
-                
-            };
-        }
-        public static CrowdDAL.InscriptionUtilisateur ToDAL(this B.InscriptionUtilisateur s)
-        {
-            return new CrowdDAL.InscriptionUtilisateur
+            return new CrowdDAL.Utilisateur
             {
 
                 Nom = s.Nom,
                 Prenom = s.Prenom,
                 NomUtilisateur = s.NomUtilisateur,
                 Password = s.Password,
-                PwdRepeat = s.PwdRepeat
+                Role = s.Role
 
 
             };

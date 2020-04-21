@@ -36,7 +36,7 @@ namespace DALAspCrowdfunding.Repositories
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Utilisateur").Result;
+                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Utilisateur/"+id).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
@@ -94,7 +94,7 @@ namespace DALAspCrowdfunding.Repositories
             using (HttpClient httpClient = new HttpClient())
             {
 
-                httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure/");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -123,7 +123,7 @@ namespace DALAspCrowdfunding.Repositories
                 HttpContent httpContent = new StringContent(jsonContent);
                 httpContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
 
-                HttpResponseMessage httpResponseMessage = httpClient.PutAsync("utilisateur" + id, httpContent).Result;
+                HttpResponseMessage httpResponseMessage = httpClient.PutAsync("utilisateur/" + id, httpContent).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
@@ -159,7 +159,7 @@ namespace DALAspCrowdfunding.Repositories
                 HttpContent httpContent = new StringContent(jsonContent);
                 httpContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
 
-                HttpResponseMessage httpResponseMessage = httpClient.PutAsync("utilisateur" +id, httpContent).Result;
+                HttpResponseMessage httpResponseMessage = httpClient.PutAsync("utilisateur/" +id, httpContent).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
@@ -174,7 +174,7 @@ namespace DALAspCrowdfunding.Repositories
                 httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage httpResponseMessage = httpClient.DeleteAsync("Utilisateur/id" + id).Result;
+                HttpResponseMessage httpResponseMessage = httpClient.DeleteAsync("Utilisateur/" + id).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;

@@ -9,3 +9,5 @@ BEGIN
 	SET @cashCashe = 'Dru' + @password + 'shka'
 	RETURN HASHBYTES(N'SHA2_256',@cashCashe)
 END
+
+

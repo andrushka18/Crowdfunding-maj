@@ -14,7 +14,8 @@ namespace CrowdfundingASP.Controllers
         // GET: Projet
         public ActionResult Index()
         {
-            return View();
+            var D = _service.Get();
+            return View(D);
         }
 
         [HttpGet]
@@ -34,29 +35,49 @@ namespace CrowdfundingASP.Controllers
         }
 
         // POST:
+
+        [HttpGet]
+        public ActionResult Add()
+        {
+            var D = _service.Get();
+            return View(D);
+        }
+
         [HttpPost]
 
-        public ActionResult Ajouter(Projet projet)
+        public ActionResult Add(Projet projo)
         {
-            _service.Add(projet);
-            return View(projet);
+            _service.Add(projo);
+            return RedirectToAction("Index");
         }
 
-        // PUT: 
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var D = _service.Get(id);
+            return View(D);
+        }
+
         [HttpPut]
 
-        public ActionResult Edit(int id, Projet projet)
+        public ActionResult Edit(int id, Projet projo)
         {
-            _service.Update(id, projet);
-            return View(id);
+            _service.Update(id, projo);
+            return RedirectToAction("Index");
         }
 
+
+        [HttpGet]
+        public ActionResult Delete(int id, Projet projo)
+        {
+            var D = _service.Get(id);
+            return View(D);
+        }
         [HttpDelete]
-        // DELETE: 
         public ActionResult Delete(int id)
         {
             _service.Delete(id);
-            return View(id);
+            return RedirectToAction("Index");
         }
     }
 

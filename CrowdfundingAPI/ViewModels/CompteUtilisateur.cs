@@ -3,17 +3,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CrowdfundingAPI.ViewModels
 {
-    public class CompteUtilisateur:Utilisateur
+    public class CompteUtilisateur
     {
+        
         [Required]
         [EmailAddress]
-        [MaxLength(320)]
+        [MaxLength(50)]
         [Display(Name = "Nom utilisateur")]
         public string NomUtilisateur { get; set; }
         [Required]
         [DataType("password")]
-        [Display(Name = "Mot de passe")]
         [MaxLength(20)]
+        [Display(Name = "Mot de passe")]
         public string Password { get; set; }
+        public string Role { get; set; }
     }
 }

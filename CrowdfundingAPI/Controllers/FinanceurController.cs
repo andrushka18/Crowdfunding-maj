@@ -22,7 +22,7 @@ namespace CrowdfundingAPI.Controllers
 
         // GET: api/Financeur/5
         [AcceptVerbs("GET")]
-        [Route("financeur")]
+        [Route("financeur/{id}")]
         public Financeur Get(int id)
         {
             return _service.Get(id);

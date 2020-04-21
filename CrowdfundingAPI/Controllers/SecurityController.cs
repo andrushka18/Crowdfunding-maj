@@ -14,15 +14,16 @@ namespace CrowdfundingAPI.Controllers
         [HttpPost]
         public IHttpActionResult NomUtilisateur(Utilisateur model)
         {
-            UtilisateurService us = new UtilisateurService();
-            int id = us.Check(model.NomUtilisateur, model.Password);
-            if (id == 0)
+            UtilisateurService _service = new UtilisateurService();
+             int id=_service.Check(model.NomUtilisateur, model.Password);
+            // //string role = _service.Check(model.NomUtilisateur, model.Password);
+            //if (id == 0 && role =="Utilisateur")
+            //{
+            //    return Unauthorized;
+            //}
+            //else
             {
-                return Unauthorized();
-            }
-            else
-            {
-                Models.Utilisateur u = us.Get(id);
+                Models.Utilisateur u = _service.Get(id);
                 JWTService service = new JWTService(
                      "Tn!_bTZ&Gt^7LM&X!HxnTT6H",
                      "localhost",
@@ -30,6 +31,7 @@ namespace CrowdfundingAPI.Controllers
                  );
                 return Ok(service.Encode(u));
             }
+
         }
     }
 }

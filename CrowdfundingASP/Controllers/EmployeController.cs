@@ -14,13 +14,12 @@ namespace CrowdfundingASP.Controllers
         // GET: Employe
         public ActionResult Index()
         {
-            return View();
+            var D = _service.Get();
+            return View(D);
         }
+
         [HttpGet]
-        //public IEnumerable<Employe> ListEmploye()
-        //{
-        //    return _service.Get();
-        //}
+        
         public ActionResult ListEmploye()
         {
             var Employe = _service.Get();
@@ -34,27 +33,52 @@ namespace CrowdfundingASP.Controllers
             return View(Employe);
         }
 
+
+        [HttpGet]
+        public ActionResult Add()
+        {
+            var D = _service.Get();
+            return View(D);
+        }
+
         [HttpPost]
 
         public ActionResult Add(Employe employe)
         {
-            _service.Add(employe);
-            return View();
+             _service.Add(employe); 
+            return RedirectToAction("Index");
+        }
+
+
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var D = _service.Get(id);
+            return View(D);
         }
 
         [HttpPut]
 
         public ActionResult Edit(int id, Employe employe)
         {
-           _service.Update(id, employe);
-            return View(id);
+            _service.Update(id, employe);
+            return RedirectToAction("Index");
         }
 
+
+
+        [HttpGet]
+        public ActionResult Delete(int id, Employe employe)
+        {
+            var D = _service.Get(id);
+            return View(D);
+        }
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            _service.Delete(id);
-            return View(id);
+            _service.Delete(id); 
+            return RedirectToAction("Index");
         }
     }
 

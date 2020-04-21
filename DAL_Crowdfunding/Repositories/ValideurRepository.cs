@@ -57,7 +57,7 @@ namespace DAL_Crowdfunding.Repositories
                             yield return new Valideur()
                             {
                                 ValideurId = (int)reader["ValideurId"],
-                                Status = (string)reader["Status"],
+                                Status = (bool)reader["Status"],
                                 Commentaire = (string)reader["Commentaire"],
 
                             };
@@ -84,7 +84,7 @@ namespace DAL_Crowdfunding.Repositories
                             return new Valideur()
                             {
                                 ValideurId = (int)reader["ValideurId"],
-                                Status = (string)reader["Status"],
+                                Status = (bool)reader["Status"],
                                 Commentaire = (string)reader["Commentaire"],
 
                             };

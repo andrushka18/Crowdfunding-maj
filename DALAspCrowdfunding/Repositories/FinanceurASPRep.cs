@@ -37,7 +37,7 @@ namespace DALAspCrowdfunding.Repositories
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
 
-                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Financeur").Result;
+                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Financeur/"+id).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
@@ -111,7 +111,7 @@ namespace DALAspCrowdfunding.Repositories
                 HttpContent httpContent = new StringContent(jsonContent);
                 httpContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
 
-                HttpResponseMessage httpResponseMessage = httpClient.PutAsync("Employe/id" + id, httpContent).Result;
+                HttpResponseMessage httpResponseMessage = httpClient.PutAsync("Employe/" + id, httpContent).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;

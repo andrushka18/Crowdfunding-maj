@@ -1,9 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Utilisateur_Add]
-	@nom NVARCHAR(50),
-	@prenom NVARCHAR(50),
-	@nomUtilisateur NVARCHAR(50),
-	@password NVARCHAR(50),
-	@role NVARCHAR(50)
+	@nom NVARCHAR(MAX),
+	@prenom NVARCHAR(MAX),
+	@nomUtilisateur NVARCHAR(MAX),
+	@password NVARCHAR(MAX),
+	@role NVARCHAR(MAX)
 	
 	
 AS

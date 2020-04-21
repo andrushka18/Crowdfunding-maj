@@ -23,13 +23,14 @@ namespace CrowdfundingAPI.Controllers
             return _service.Get();
         }
 
-        // GET: api/Droit/5
+        //GET: api/Droit/5
         [AcceptVerbs("GET")]
-        [Route("droit")]
+        [Route("droit/{id}")]
         
         public Droit Get(int id)
         {
-            return _service.Get(id);
+            var droit = _service.Get(id);
+            return droit;
         }
         // POST: api/Droit
         [AcceptVerbs("POST")]

@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[Utilisateur] (
     [UtilisateurId]  INT            IDENTITY (1, 1) NOT NULL,
-    [Nom]            NVARCHAR (32)  NOT NULL,
-    [Prenom]         NVARCHAR (32)  NOT NULL,
+    [Nom]            NVARCHAR (MAX)  NOT NULL,
+    [Prenom]         NVARCHAR (MAX)  NOT NULL,
     [NomUtilisateur] NVARCHAR (320)  NOT NULL,
-    [Password]       VARBINARY (64) NOT NULL,
-    [Role] NVARCHAR(50) NULL DEFAULT 'Utilisateur'
+    [Password]       VARBINARY (MAX) NOT NULL,
+    [Role] NVARCHAR(MAX) NULL DEFAULT 'Utilisateur'
     
     CONSTRAINT [PK_Utilisateur] PRIMARY KEY CLUSTERED ([UtilisateurId] ASC),
     [IsActive] BIT NULL DEFAULT 0, 

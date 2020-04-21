@@ -1,24 +1,39 @@
-﻿@model CrowdfundingASP.Models.Droit
+﻿@model IEnumerable<CrowdfundingASP.Models.Droit>
 
-<div class="jumbotron">
-    <h1>Liste Role </h1>
-    <h4 class="alert-danger">@ViewBag.ErrorMessage</h4>
+@{
+    ViewBag.Title = "Index";
+}
 
+<h2>Index</h2>
 
-    <p>............................................................</p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdDroit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role)
+        </th>
+        <th></th>
+    </tr>
 
-    <p>
-        @Html.ActionLink("Liste Role", "ListDroit", "Droit")
-    </p>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdDroit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
 
-    <p>............................................................</p>
-
-    <p>@Html.ActionLink("Retour", "Index", "Droit")</p>
-    <p>@Html.ActionLink("Acceuil", "Index", "Home")</p>
-
-
-
-</div>
-
-
-<p>@Html.ActionLink("Acceuil", "Index", "Home")</p>
+</table>

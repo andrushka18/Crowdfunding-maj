@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DALAspCrowdfunding.Models
 {
-    public class CompteUtilisateur:Utilisateur
+    public class CompteUtilisateur
     {
         [Required]
         [EmailAddress]
-        [MaxLength(320)]
+        [MaxLength(50)]
         [Display(Name = "Nom utilisateur")]
         public string NomUtilisateur { get; set; }
         [Required]
@@ -19,5 +19,10 @@ namespace DALAspCrowdfunding.Models
         [Display(Name = "Mot de passe")]
         [MaxLength(20)]
         public string Password { get; set; }
+        [Required]
+        [DataType("password")]
+        [Display(Name = "Mot de passe")]
+        [MaxLength(20)]
+        public string Role { get; set; }
     }
 }

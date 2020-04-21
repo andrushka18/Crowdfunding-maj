@@ -280,10 +280,7 @@
     <Compile Include="Services\ValideurAspRep.cs" />
     <Compile Include="Usefulls\CrowFundMap.cs" />
     <Compile Include="ViewModels\CompteUtilisateur.cs" />
-    <Compile Include="ViewModels\EmployeDetails.cs" />
-    <Compile Include="ViewModels\FinanceurDetails.cs" />
     <Compile Include="ViewModels\InscriptionUtilisateur.cs" />
-    <Compile Include="ViewModels\ValideurDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -415,9 +412,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\SignOut.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -428,35 +422,29 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Droit\Index.cshtml" />
+    <Content Include="Views\Droit\Details.cshtml" />
+    <Content Include="Views\Droit\Ajouter.cshtml" />
+    <Content Include="Views\Droit\Edit.cshtml" />
+    <Content Include="Views\Droit\Delete.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Inscription.cshtml" />
     <Content Include="Views\Home\NomUtilisateur.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Droit\AddDroit.cshtml" />
-    <Content Include="Views\Droit\ListDroit.cshtml" />
-    <Content Include="Views\Droit\DeleteDroit.cshtml" />
-    <Content Include="Views\Employe\ListEmploye.cshtml" />
-    <Content Include="Views\Droit\Index.cshtml" />
+    <Content Include="Views\Home\SignOut.cshtml" />
     <Content Include="Views\Utilisateur\Index.cshtml" />
-    <Content Include="Views\Utilisateur\ListUtilisateur.cshtml" />
-    <Content Include="Views\Employe\Index.cshtml" />
-    <Content Include="Views\Financeur\ListFinancement.cshtml" />
-    <Content Include="Views\Projet\ListProjet.cshtml" />
-    <Content Include="Views\Valideur\ListValidation.cshtml" />
-    <Content Include="Views\Valideur\Index.cshtml" />
-    <Content Include="Views\Projet\Index.cshtml" />
-    <Content Include="Views\Financeur\Index.cshtml" />
-    <Content Include="Views\Utilisateur\AddUtilisateur.cshtml" />
     <Content Include="Views\Utilisateur\Details.cshtml" />
-    <Content Include="Views\Utilisateur\Edit.cshtml" />
+    <Content Include="Views\Utilisateur\ChangePassword.cshtml" />
+    <Content Include="Views\Utilisateur\ChangeInfo.cshtml" />
     <Content Include="Views\Utilisateur\Delete.cshtml" />
-    <Content Include="Views\Employe\Details.cshtml" />
-    <Content Include="Views\Employe\Add.cshtml" />
-    <Content Include="Views\Financeur\Add.cshtml" />
-    <Content Include="Views\Financeur\Details.cshtml" />
-    <Content Include="Views\Financeur\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Employe\" />
+    <Folder Include="Views\Financeur\" />
+    <Folder Include="Views\Projet\" />
+    <Folder Include="Views\Valideur\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

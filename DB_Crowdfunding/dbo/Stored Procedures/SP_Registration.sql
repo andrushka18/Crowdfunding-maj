@@ -1,12 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Registration]
-	@nom NVARCHAR(50), 
-    @prenom NVARCHAR(50), 
-    @nomUtilisateur NVARCHAR(320), 
-    @password NVARCHAR(20)
+	@nom NVARCHAR(MAX), 
+    @prenom NVARCHAR(MAX), 
+    @nomUtilisateur NVARCHAR(MAX), 
+    @password NVARCHAR(MAX)
    
 AS
 BEGIN
-     Declare  @role NVARCHAR(50) = 'utilisateur'
+     Declare  @role NVARCHAR(MAX) = 'utilisateur'
 
     if NOT EXISTS (Select * from [Utilisateur])
         Set @role = 'Admin';

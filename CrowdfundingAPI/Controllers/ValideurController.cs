@@ -22,7 +22,7 @@ namespace CrowdfundingAPI.Controllers
 
         // GET: api/Valideur/5
         [AcceptVerbs("GET")]
-        [Route("valideur")]
+        [Route("valideur/{id}")]
         
         public Valideur Get(int id)
         {

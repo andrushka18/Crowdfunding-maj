@@ -8,13 +8,15 @@ using System.Web.Mvc;
 
 namespace CrowdfundingASP.Controllers
 {
+    [Authorize]
     public class DroitController : Controller
     {
         private DroitAspRep _service = new DroitAspRep();
         // GET: Droit
         public ActionResult Index()
         {
-            return View();
+            var D = _service.Get();
+            return View(D);
         }
         // GET: api/Droit
         [HttpGet]
@@ -35,32 +37,53 @@ namespace CrowdfundingASP.Controllers
             var D = _service.Get(id);
             return View(D);
         }
+
+        [HttpGet]
+        public ActionResult Ajouter()
+        {
+            var D = _service.Get();
+            return View(D);
+        }
         // POST: Droit
         [HttpPost]
 
+        
         public ActionResult Ajouter(Droit role)
         {
-            { _service.Add(role); }
+             _service.Add(role); 
             
-            return View(role);
+            return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var D = _service.Get(id);
+            return View(D);
+        }
         // PUT: /Droit/5
         [HttpPut]
 
         public ActionResult Edit(int id, Droit role)
         {
-            { _service.Update(id, role); }
-            return View(id);
+            _service.Update(id, role); 
+            return RedirectToAction("Index");
+        }
+
+        //[HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var D = _service.Get(id);
+            return View(D);
         }
 
         // DELETE: Droit/5
-        [HttpDelete]
-
-        public ActionResult Delete(int id)
+        //[HttpDelete]
+        [HttpPost]
+        public ActionResult Delete(int id, Droit role)
         {
-            { _service.Delete(id); }
-            return View(id);
+            _service.Delete(id); 
+            return RedirectToAction("Index");
         }
 
     }

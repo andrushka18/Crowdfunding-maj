@@ -22,7 +22,7 @@ namespace CrowdfundingAPI.Controllers
 
         // GET: api/Utilisateur/5
         [AcceptVerbs("GET")]
-        [Route("Utilisateur")]
+        [Route("Utilisateur/{id}")]
         [HttpGet]
         public Utilisateur Get(int id)
         {
@@ -31,11 +31,11 @@ namespace CrowdfundingAPI.Controllers
 
         // POST: api/Utilisateur
         [AcceptVerbs("POST")]
-        [Route("Secure/Utilisateur")]
+        [Route("Utilisateur")]
         [HttpPost]
-        public void Registration([FromBody]CompteUtilisateur cu)
+        public void Registration([FromBody]Utilisateur u)
         {
-            _service.Registration(cu);
+            _service.Add(u);
         }
 
 

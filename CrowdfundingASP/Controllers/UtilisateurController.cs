@@ -16,7 +16,8 @@ namespace CrowdfundingASP.Controllers
         // GET: Utilisateur
         public ActionResult Index()
         {
-            return View();
+            var D = _service.Get();
+            return View(D);
         }
         // GET: 
         [AcceptVerbs("GET")]
@@ -40,18 +41,25 @@ namespace CrowdfundingASP.Controllers
 
         // POST: Utilisateur
 
-        [HttpPost]
-        public ActionResult Inscription(Utilisateur utilisateur)
+        [HttpGet]
+        public ActionResult ChangePassword(int id)
         {
-            _service.Add(utilisateur);
-            return View();
+            var D = _service.Get(id);
+            return View(D);
         }
 
         [HttpPut]
         public ActionResult ChangePassword(int id, string password)
         {
-            _service.ChangePassword(id, password);
-            return View(id);
+            _service.ChangePassword(id, password); 
+            return RedirectToAction("Index");
+        }
+       
+        [HttpGet]
+        public ActionResult ChangeInfo(int id)
+        {
+            var D = _service.Get(id);
+            return View(D);
         }
         // PUT: Utilisateur/5
 
@@ -59,17 +67,24 @@ namespace CrowdfundingASP.Controllers
         public ActionResult ChangeInfo(int id, Utilisateur utilisateur)
         {
             _service.Update(id, utilisateur);
-            return View(id);
+            return RedirectToAction("Index");
         }
+
 
         // DELETE: Utilisateur/5
 
 
+        [HttpGet]
+        public ActionResult Delete(int id, Utilisateur u)
+        {
+            var D = _service.Get(id);
+            return View(D);
+        }
         [HttpDelete]
         public ActionResult Delete(int id)
         {
             _service.Delete(id);
-            return View(id);
+            return RedirectToAction("Index");
         }
 
         [AcceptVerbs("PUT", "POST")]
