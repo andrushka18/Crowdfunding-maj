@@ -48,7 +48,7 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44356/api");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

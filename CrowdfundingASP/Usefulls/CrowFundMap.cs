@@ -1,4 +1,6 @@
-﻿using A=CrowdfundingASP.Models;
+﻿using CrowdfundingASP.Models;
+using CrowdfundingASP.ViewModels;
+using A=CrowdfundingASP.Models;
 using B=CrowdfundingASP.ViewModels;
 using CrowdDAL = DALAspCrowdfunding.Models;
 using FundingASP = CrowdfundingASP.Models;
@@ -186,49 +188,16 @@ namespace CrowdfundingASP.Usefulls
 
             };
         }
-        //public static B.CompteUtilisateur ToASP(this CrowdDAL.CompteUtilisateur s)
-        //{
-        //    return new B.CompteUtilisateur
-        //    {
-        //        NomUtilisateur = s.NomUtilisateur,
-        //        Password = s.Password,
-
-
-        //    };
-        //}
-        //public static CrowdDAL.CompteUtilisateur ToDAL(this B.CompteUtilisateur s)
-        //{
-        //    return new CrowdDAL.CompteUtilisateur
-        //    {
-
-        //        NomUtilisateur = s.NomUtilisateur,
-        //        Password = s.Password,
-
-
-        //    };
-        //}
-        //public static B.InscriptionUtilisateur ToASP(this CrowdDAL.Utilisateur s)
-        //{
-        //    return new B.InscriptionUtilisateur
-        //    {
-        //        Nom = s.Nom,
-        //        Prenom = s.Prenom,
-        //        NomUtilisateur = s.NomUtilisateur,
-        //        Password = s.Password,
-
-
-        //    };
-        //}
-        public static CrowdDAL.Utilisateur ToDAL(this B.InscriptionUtilisateur s)
+        public static Utilisateur Inscription(this InscriptionUtilisateur iu)
         {
-            return new CrowdDAL.Utilisateur
+            return new Utilisateur
             {
+                Nom = iu.Nom,
+                Prenom = iu.Prenom,
+                NomUtilisateur = iu.NomUtilisateur,
+                Password = iu.Password,
+                Role = iu.Role
 
-                Nom = s.Nom,
-                Prenom = s.Prenom,
-                NomUtilisateur = s.NomUtilisateur,
-                Password = s.Password,
-                Role = s.Role
 
 
             };

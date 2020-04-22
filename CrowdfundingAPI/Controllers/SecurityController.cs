@@ -22,7 +22,7 @@ namespace CrowdfundingAPI.Controllers
             //    return Unauthorized;
             //}
             //else
-            {
+            
                 Models.Utilisateur u = _service.Get(id);
                 JWTService service = new JWTService(
                      "Tn!_bTZ&Gt^7LM&X!HxnTT6H",
@@ -30,7 +30,7 @@ namespace CrowdfundingAPI.Controllers
                      "postman"
                  );
                 return Ok(service.Encode(u));
-            }
+            
 
         }
     }

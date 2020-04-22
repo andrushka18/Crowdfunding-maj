@@ -13,7 +13,7 @@ namespace CrowdfundingAPI.Controllers
         private ValideurService _service = new ValideurService();
         // GET: api/Valideur
         [AcceptVerbs("GET")]
-        [Route("validation")]
+        [Route("valideur")]
         
         public IEnumerable<Valideur> Get()
         {

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace CrowdfundingASP.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class DroitController : Controller
     {
         private DroitAspRep _service = new DroitAspRep();

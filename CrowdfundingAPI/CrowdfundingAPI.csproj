@@ -158,8 +158,10 @@
     <Compile Include="Controllers\DroitController.cs" />
     <Compile Include="Controllers\EmployeController.cs" />
     <Compile Include="Controllers\FinanceurController.cs" />
+    <Compile Include="Controllers\PalierController.cs" />
     <Compile Include="Controllers\ProjetController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Controllers\SocieteController.cs" />
     <Compile Include="Controllers\UtilisateurController.cs" />
     <Compile Include="Controllers\ValideurController.cs" />
     <Compile Include="FundingAPIPermition\FundingAPIPermition.cs" />
@@ -245,6 +247,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Palier\" />
+    <Folder Include="Views\Societe\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

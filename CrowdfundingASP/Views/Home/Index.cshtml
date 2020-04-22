@@ -6,12 +6,12 @@
 
 
 @*<h2>Bienvenue</h2>*@
-<div class="jumbotron">
-    <h1>Bienvenue </h1>
-    <h4 class="alert-danger">@ViewBag.ErrorMessage</h4>
+    <div class="jumbotron">
+        <h1>Bienvenue </h1>
+        <h4 class="alert-danger">@ViewBag.ErrorMessage</h4>
 
-   
-    
+
+
         <p>vous n'avez pas encore de compte, veuillez-vous inscrire</p>
 
         <p>
@@ -21,15 +21,23 @@
         <p>vous avez un compte, veuillez-vous connecter</p>
 
         <p>@Html.ActionLink("Connexion", "NomUtilisateur", "Home")</p>
-    
+
+      
+
+        <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group" role="group" aria-label="First group">
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Utilisateur", "Index", "Utilisateur")</button>
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Projets", "Index", "Projet")</button>
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Employés", "Index", "Employe")</button>
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Validations", "Index", "Valideur")</button>
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Financements", "Index", "Financeur")</button>
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Paliers", "Index", "Palier")</button>
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Sociétés", "Index", "Societe")</button>
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Droits", "Index", "Droit")</button>
+            </div>
+        </div>
 
 
-
-
-
-    <p>@Html.ActionLink("Liste des Utilisateur", "Index", "Utilisateur")</p>
-    <h2>Index</h2>
-
-</div>
+        </div>
 
 

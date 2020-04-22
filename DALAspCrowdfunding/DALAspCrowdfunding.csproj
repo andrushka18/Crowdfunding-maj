@@ -175,11 +175,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\CompteUtilisateur.cs" />
     <Compile Include="Models\Droit.cs" />
     <Compile Include="Models\Employe.cs" />
     <Compile Include="Models\Financeur.cs" />
-    <Compile Include="Models\InscriptionUtilisateur.cs" />
     <Compile Include="Models\Palier.cs" />
     <Compile Include="Models\Projet.cs" />
     <Compile Include="Models\Societe.cs" />

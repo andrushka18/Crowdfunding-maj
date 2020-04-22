@@ -25,10 +25,8 @@ namespace CrowdfundingASP.Controllers
         [HttpPost]
         public ActionResult Inscription(InscriptionUtilisateur iu)
         {
-            
-            {
-                _service.Add(iu);
-            }
+                        
+            _service.Add(iu);
             return View(iu);
         }
 
@@ -42,25 +40,27 @@ namespace CrowdfundingASP.Controllers
         [HttpPost]
         public ActionResult NomUtilisateur(CompteUtilisateur cu)
         {
+
             if (ModelState.IsValid)
             {
 
                 foreach (Utilisateur u in _service.Get().Where(b => b.NomUtilisateur == cu.NomUtilisateur))
                 {
-                    if ( u != null)
+                    if ( u.NomUtilisateur == cu.NomUtilisateur)
                     {
 
                         if (cu.NomUtilisateur == u.NomUtilisateur && cu.Password == u.Password)
                         {
-                            _service.Add(u);
-                            return RedirectToAction("Index");
+                            var D=_service.Get(u);
+                            return View(D);
                         }
-
+                        
                         else
                         {
                             ViewBag.ErrorMessage = "Nom utilisateur ou mot de passe Incorrect";
                             return View(cu);
                         }
+                        
                     }
                     else
                     {
@@ -92,11 +92,8 @@ namespace CrowdfundingASP.Controllers
                 Utilisateur u = UtilisateurAspRep.Entity.Get(id);
                 UtilisateurAspRep.Entity.Update(id, u);
                 return RedirectToAction("ListUtilisateur");
-            
-            
+ 
         }
-
-
         public ActionResult About()
         {
             ViewBag.Message = "Description de Crowdfunding.";

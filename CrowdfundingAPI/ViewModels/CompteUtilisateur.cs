@@ -16,6 +16,6 @@ namespace CrowdfundingAPI.ViewModels
         [MaxLength(20)]
         [Display(Name = "Mot de passe")]
         public string Password { get; set; }
-        public string Role { get; set; }
+        //public string Role { get; set; }
     }
 }
