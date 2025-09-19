@@ -1,4 +1,5 @@
 ﻿using DAL_Crowdfunding.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,7 +9,7 @@ namespace DAL_Crowdfunding.Repositories
 {
     public class DroitRepository : IDroitRepository<int, Droit>
     {
-        private string _connecting = ConfigurationManager.ConnectionStrings["Crowdfunding"].ConnectionString;
+        private string _connecting = ConfigurationManager.ConnectionStrings["DB_Crowdfunding"].ConnectionString;
         public void Add(Droit entity)
         {
             using (SqlConnection connection = new SqlConnection(_connecting))
@@ -17,8 +18,8 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Droit_Add";
-                    command.Parameters.AddWithValue("@NomDroit", entity.NomDroit);
-                    command.Parameters.AddWithValue("@IdDroit", entity.IdDroit);
+                    command.Parameters.AddWithValue("@role", entity.Role);
+                    //command.Parameters.AddWithValue("@idDroit", entity.IdDroit);
                     connection.Open();
                     entity.IdDroit = (int)command.ExecuteScalar();
                 }
@@ -33,7 +34,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Droit_Delete";
-                    command.Parameters.AddWithValue("@IdDroit", id);
+                    command.Parameters.AddWithValue("@idDroit", id);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -56,7 +57,7 @@ namespace DAL_Crowdfunding.Repositories
                             yield return new Droit()
                             {
                                 IdDroit = (int)reader["IdDroit"],
-                                NomDroit = (string)reader["Droit Utilisateur"],
+                                Role = (string)reader["Role"],
 
 
                             };
@@ -74,7 +75,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Droit_GetById";
-                    command.Parameters.AddWithValue("IdDroit", id);
+                    command.Parameters.AddWithValue("@idDroit", id);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -83,7 +84,7 @@ namespace DAL_Crowdfunding.Repositories
                             return new Droit()
                             {
                                 IdDroit = (int)reader["IdDroit"],
-                                NomDroit = (string)reader["Droit Utilisateur"],
+                                Role = (string)reader["Role"],
 
                             };
                         }
@@ -106,7 +107,7 @@ namespace DAL_Crowdfunding.Repositories
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Droit_Update";
                     command.Parameters.AddWithValue("@idDroit", id);
-                    command.Parameters.AddWithValue("@nomDroit", entity.NomDroit);
+                    command.Parameters.AddWithValue("@role", entity.Role);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }

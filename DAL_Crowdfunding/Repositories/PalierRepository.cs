@@ -1,4 +1,5 @@
 ﻿using DAL_Crowdfunding.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,7 +9,7 @@ namespace DAL_Crowdfunding.Repositories
 {
     public class PalierRepository : IPalierRepository<int, Palier>
     {
-        private string _connecting = ConfigurationManager.ConnectionStrings["Crowdfunding"].ConnectionString;
+        private string _connecting = ConfigurationManager.ConnectionStrings["DB_Crowdfunding"].ConnectionString;
         public void Add(Palier entity)
         {
             using (SqlConnection connection = new SqlConnection(_connecting))
@@ -33,7 +34,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Palier_Delete";
-                    command.Parameters.AddWithValue("@IdPalier", id);
+                    command.Parameters.AddWithValue("@idPalier", id);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -55,7 +56,7 @@ namespace DAL_Crowdfunding.Repositories
                         {
                             yield return new Palier()
                             {
-                                IdPalier = (int)reader["Id Palier"],
+                                IdPalier = (int)reader["IdPalier"],
                                 Montant = (decimal)reader["Montant"],
                                 Prime = (string)reader["Prime"],
 
@@ -74,7 +75,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Valideur_GetById";
-                    command.Parameters.AddWithValue("IdPalier", id);
+                    command.Parameters.AddWithValue("@idPalier", id);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -105,7 +106,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Palier_Update";
-                    command.Parameters.AddWithValue("@IdPalier", id);
+                    command.Parameters.AddWithValue("@idPalier", id);
                     command.Parameters.AddWithValue("@montant", entity.Montant);
                     command.Parameters.AddWithValue("@prime", entity.Prime);
                     connection.Open();
@@ -121,7 +122,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Palier_Link";
-                    command.Parameters.AddWithValue("@idProjet", id);
+                    command.Parameters.AddWithValue("@idPalier", id);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -136,7 +137,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Palier_Unlink";
-                    command.Parameters.AddWithValue("@idProjet", id);
+                    command.Parameters.AddWithValue("@idPalier", id);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }

@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Droit_Update]
 	@idDroit int,
-	@nomDroit int
+	@role NVARCHAR (MAX)
 AS
-	UPDATE [Droit] SET [NomDroit]= @nomDroit WHERE [IdDroit] = @idDroit
+	UPDATE [Droit] SET [Role]= @role WHERE [IdDroit] = @idDroit

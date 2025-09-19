@@ -1,11 +1,14 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Utilisateur_Add]
-	@nom NVARCHAR(50),
-	@prenom NVARCHAR(50),
-	@nomUtilisateur NVARCHAR(50),
-	@motDePasse NVARCHAR(50)
+	@nom NVARCHAR(MAX),
+	@prenom NVARCHAR(MAX),
+	@nomUtilisateur NVARCHAR(MAX),
+	@password NVARCHAR(MAX),
+	@role NVARCHAR(MAX)
 	
 	
 AS
-	INSERT INTO Utilisateur([Nom],[Prenom],[NomUtilisateur],[Password])
+	INSERT INTO Utilisateur([Nom],[Prenom],[NomUtilisateur],[Password],[Role])
 	OUTPUT inserted.UtilisateurId
-	VALUES (@nom,@prenom,@nomUtilisateur,[dbo].SF_HashPassword(@motDePasse))
+	VALUES (@nom,@prenom,@nomUtilisateur,[dbo].SF_HashPassword(@password),(@role))
+
+

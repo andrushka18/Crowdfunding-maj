@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Utilisateur_Update]
 	@utilisateurId INT,
-	@nom NVARCHAR(50),
-	@prenom NVARCHAR(50)
+	@nom NVARCHAR(MAX),
+	@prenom NVARCHAR(MAX)
 AS
 	UPDATE [Utilisateur]
 	SET [Nom] = @nom,

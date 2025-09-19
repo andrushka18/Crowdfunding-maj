@@ -9,17 +9,13 @@ namespace DALAspCrowdfunding.Repositories
 {
     public class PalierASPRep : IPalierRep<int, Palier>
     {
-        private static IPalierRep<int, Palier> _entity;
-        public static IPalierRep<int, Palier> Entity
-        {
-            get { return _entity ?? (_entity = new PalierASPRep()); }
-        }
+       
 
         public IEnumerable<Palier> Get()
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -36,12 +32,12 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
 
-                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Palier").Result;
+                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Palier/"+id).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
@@ -53,7 +49,7 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -69,7 +65,7 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -82,11 +78,11 @@ namespace DALAspCrowdfunding.Repositories
             }
         }
 
-        void IRep<int, Palier>.Add(Palier entity)
+        public void Add(Palier entity)
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -102,16 +98,19 @@ namespace DALAspCrowdfunding.Repositories
             }
         }
 
-        void IRep<int, Palier>.Update(int id, Palier entity)
+        public void Update(int id, Palier entity)
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+                string jsonContent = JsonConvert.SerializeObject(entity);
+                HttpContent httpContent = new StringContent(jsonContent);
+                httpContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
 
-                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Palier").Result;
+                HttpResponseMessage httpResponseMessage = httpClient.PutAsync("palier/" + id, httpContent).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
@@ -119,11 +118,11 @@ namespace DALAspCrowdfunding.Repositories
             }
         }
 
-        void IRep<int, Palier>.Delete(int id)
+        public void Delete(int id)
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

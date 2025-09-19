@@ -2,4 +2,4 @@
 	
 	@idDroit int
 AS
-	SELECT IdDroit FROM [Droit] WHERE [IdDroit] = @idDroit
+	SELECT [IdDroit], [Role] FROM [Droit] WHERE [IdDroit] = @idDroit

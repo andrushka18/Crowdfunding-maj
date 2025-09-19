@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Financeur_Update]
-	@utilisateurId INT,
-	@montant money, 
-	@prime NVARCHAR(50)
+	@financeurId INT,
+	@montant Decimal(10), 
+	@prime NVARCHAR(MAX)
 AS
-	UPDATE [Financeur] SET [Montant] = @montant , [Prime]= @prime WHERE [UtilisateurId] = @utilisateurId
+	UPDATE [Financeur] SET [Montant] = @montant , [Prime]= @prime WHERE [FinanceurId] = @financeurId

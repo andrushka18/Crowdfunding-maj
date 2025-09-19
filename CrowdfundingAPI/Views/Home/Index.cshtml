@@ -1,0 +1,39 @@
+﻿
+
+<div class="jumbotron">
+    @using CrowdfundingAPI.Services.Mapper
+   
+    <h1>Bienvenue </h1>
+    <h4 class="alert-danger">@ViewBag.ErrorMessage</h4>
+
+    @if (SessionTool.utilisateur != null)
+    {
+        <p>Salut, @SessionTool.utilisateur.NomUtilisateur ! Amuses toi bien !</p>
+    }
+    else
+    {
+        <p>Vous n'avez pas encore de compte, veuillez-vous inscrire</p>
+
+        <p>
+            @Html.ActionLink("Inscription", "Inscription", "index")
+        </p>
+
+        <p>Vous avez un compte, veuillez-vous connecter</p>
+
+        <p>@Html.ActionLink("Connexion", "NomUtilisateur", "index")</p>
+    }
+
+</div>
+<div class="row">
+    
+    <div class="col-md-4">
+        <p>@Html.ActionLink("Liste des Projets", "ListProjet", "index")</p>
+    </div>
+    <div class="col-md-4">
+        <p>@Html.ActionLink("Liste des Palier", "ListPalier", "index")</p>
+    </div>
+    <div class="col-md-4">
+        <p>@Html.ActionLink("Liste des Financement", "ListFinanceur", "index")</p>
+    </div>
+    
+</div>

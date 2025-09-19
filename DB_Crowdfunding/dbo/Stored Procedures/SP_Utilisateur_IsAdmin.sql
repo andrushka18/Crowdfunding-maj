@@ -4,4 +4,4 @@
 	@isAdmin BIT OUTPUT
 AS
 	SET @isAdmin = 0
-	SELECT @isAdmin = IIF([NomDroit] = 'Administrateur', 1, 0) FROM  [Utilisateur] JOIN [Droit] ON [Utilisateur].[UtilisateurId] = [Droit].[IdDroit] WHERE UtilisateurId = @utilisateurId AND IdDroit = @idDroit 
+	SELECT @isAdmin = IIF([Role] = 'Admin', 1, 0) FROM  [Utilisateur]  WHERE [UtilisateurId] =@utilisateurId  

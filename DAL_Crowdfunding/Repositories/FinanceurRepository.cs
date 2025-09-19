@@ -1,4 +1,5 @@
 ﻿using DAL_Crowdfunding.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,7 +9,7 @@ namespace DAL_Crowdfunding.Repositories
 {
     public class FinanceurRepository : IFinanceurRepository<int, Financeur>
     {
-        private string _connecting = ConfigurationManager.ConnectionStrings["Crowdfunding"].ConnectionString;
+        private string _connecting = ConfigurationManager.ConnectionStrings["DB_Crowdfunding"].ConnectionString;
         public void Add(Financeur entity)
         {
             using (SqlConnection connection = new SqlConnection(_connecting))
@@ -17,12 +18,15 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Financeur_Add";
+                    //command.Parameters.AddWithValue("@financeurId", entity.FinanceurId);
                     command.Parameters.AddWithValue("@montant", entity.Montant);
                     command.Parameters.AddWithValue("@prime", entity.Prime);
                     connection.Open();
-                    entity.UtilisateurId = (int)command.ExecuteScalar();
+                    entity.FinanceurId = (int)command.ExecuteScalar();
+                   
                 }
             }
+            
         }
 
         public void Delete(int id)
@@ -33,7 +37,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Financeur_Delete";
-                    command.Parameters.AddWithValue("@utilisateurId", id);
+                    command.Parameters.AddWithValue("@financeurId", id);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -55,7 +59,7 @@ namespace DAL_Crowdfunding.Repositories
                         {
                             yield return new Financeur()
                             {
-                                UtilisateurId = (int)reader["UtilisateurId"],
+                                FinanceurId = (int)reader["FinanceurId"],
                                 Montant = (decimal)reader["Montant"],
                                 Prime = (string)reader["Prime"],
 
@@ -74,7 +78,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Valideur_GetById";
-                    command.Parameters.AddWithValue("utilisateurId", id);
+                    command.Parameters.AddWithValue("@financeurId", id);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -82,7 +86,7 @@ namespace DAL_Crowdfunding.Repositories
                         {
                             return new Financeur()
                             {
-                                UtilisateurId = (int)reader["UtilisateurId"],
+                                FinanceurId = (int)reader["FinaceurId"],
                                 Montant = (decimal)reader["Montant"],
                                 Prime = (string)reader["Prime"],
 
@@ -105,7 +109,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Financeur_Update";
-                    command.Parameters.AddWithValue("@utilisateurId", id);
+                    command.Parameters.AddWithValue("@financeurId", id);
                     command.Parameters.AddWithValue("@montant", entity.Montant);
                     command.Parameters.AddWithValue("@prime", entity.Prime);
                     connection.Open();
@@ -137,7 +141,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Financeur_Unlink";
-                    command.Parameters.AddWithValue("@utilisateurId", id);
+                    command.Parameters.AddWithValue("@utisateurId", id);
                     command.Parameters.AddWithValue("@idProjet", id);
                     connection.Open();
                     command.ExecuteNonQuery();

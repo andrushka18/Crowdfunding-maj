@@ -1,4 +1,5 @@
 ﻿using DAL_Crowdfunding.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,7 +9,7 @@ namespace DAL_Crowdfunding.Repositories
 {
    public  class ProjetRepository : IProjetRepository<int, Projet>
     {
-        private string _connecting = ConfigurationManager.ConnectionStrings["Crowdfunding"].ConnectionString;
+        private string _connecting = ConfigurationManager.ConnectionStrings["DB_Crowdfunding"].ConnectionString;
         public void Add(Projet entity)
         {
             using (SqlConnection connection = new SqlConnection(_connecting))
@@ -58,11 +59,11 @@ namespace DAL_Crowdfunding.Repositories
                         {
                             yield return new Projet()
                             {
-                                IdProjet = (int)reader["Id Projet"],
+                                IdProjet = (int)reader["IdProjet"],
                                 Nom = (string)reader["Nom"],
-                                PlafondFinance = (decimal)reader["Plafond Projet"],
-                                UrlVideo = (string)reader["Url Video"],
-                                NumeroCompte = (string)reader["Compte"],
+                                PlafondFinance = (decimal)reader["PlafondFinance"],
+                                UrlVideo = (string)reader["UrlVideo"],
+                                NumeroCompte = (string)reader["NumeroCompte"]
 
                             };
                         }
@@ -79,7 +80,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Projets_GetById";
-                    command.Parameters.AddWithValue("IdProjet", id);
+                    command.Parameters.AddWithValue("@idProjet", id);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -87,11 +88,11 @@ namespace DAL_Crowdfunding.Repositories
                         {
                             return new Projet()
                             {
-                                IdProjet = (int)reader["Id Projet"],
+                                IdProjet = (int)reader["IdProjet"],
                                 Nom = (string)reader["Nom"],
-                                PlafondFinance = (decimal)reader["Plafond Projet"],
-                                UrlVideo = (string)reader["Url Video"],
-                                NumeroCompte = (string)reader["Compte"],
+                                PlafondFinance = (decimal)reader["PlafondFinance"],
+                                UrlVideo = (string)reader["UrlVideo"],
+                                NumeroCompte = (string)reader["NumeroCompte"]
 
                             };
                         }
@@ -111,8 +112,8 @@ namespace DAL_Crowdfunding.Repositories
                 using (SqlCommand command = connection.CreateCommand())
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "SP_Utilisateur_Update";
-                    command.Parameters.AddWithValue("@IdProjet", id);
+                    command.CommandText = "SP_Projets_Update";
+                    command.Parameters.AddWithValue("@idProjet", entity.IdProjet);
                     command.Parameters.AddWithValue("@nom", entity.Nom);
                     command.Parameters.AddWithValue("@numeroCompte", entity.NumeroCompte);
                     command.Parameters.AddWithValue("@plafondFinance", entity.PlafondFinance);

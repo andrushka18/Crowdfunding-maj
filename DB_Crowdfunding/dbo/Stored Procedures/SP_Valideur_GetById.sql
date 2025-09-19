@@ -1,4 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Valideur_GetById]
-	@utilisateurId int
+	@valideurId int
 AS
-	SELECT [UtilisateurId],[Status],[Commentaire] FROM [Valideur] WHERE [UtilisateurId] = @utilisateurId
+	SELECT [ValideurId],[UtilisateurId],[Status],[Commentaire] FROM [Valideur] WHERE [ValideurId] = @valideurId

@@ -12,16 +12,12 @@ namespace DALAspCrowdfunding.Repositories
 {
     public class ValideurASPRep : IValideurRep<int, Valideur>
     {
-        private static IValideurRep<int, Valideur> _entity;
-        public static IValideurRep<int, Valideur> Entity
-        {
-            get { return _entity ?? (_entity = new ValideurASPRep()); }
-        }
+      
         public IEnumerable<Valideur> Get()
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -38,12 +34,12 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
 
-                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Valideur").Result;
+                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Valideur/"+id).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
@@ -56,7 +52,7 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -72,7 +68,7 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -85,11 +81,11 @@ namespace DALAspCrowdfunding.Repositories
             }
         }
 
-        void IRep<int, Valideur>.Add(Valideur entity)
+        public void Add(Valideur entity)
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -101,20 +97,23 @@ namespace DALAspCrowdfunding.Repositories
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
-                JsonConvert.DeserializeObject<Valideur>(json);
+                 JsonConvert.DeserializeObject<Valideur>(json);
             }
         }
 
-        void IRep<int, Valideur>.Update(int id, Valideur entity)
+        public void Update(int id, Valideur entity)
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
+                string jsonContent = JsonConvert.SerializeObject(entity);
+                HttpContent httpContent = new StringContent(jsonContent);
+                httpContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
 
-                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Valideur").Result;
+                HttpResponseMessage httpResponseMessage = httpClient.PutAsync("valideur/" + id, httpContent).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
@@ -122,11 +121,11 @@ namespace DALAspCrowdfunding.Repositories
             }
         }
 
-        void IRep<int, Valideur>.Delete(int id)
+        public void Delete(int id)
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

@@ -1,4 +1,5 @@
 ﻿using DAL_Crowdfunding.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,7 +9,7 @@ namespace DAL_Crowdfunding.Repositories
 {
     public class ValideurRepository : IValideurRepository<int, Valideur>
     {
-        private string _connecting = ConfigurationManager.ConnectionStrings["Crowfunding"].ConnectionString;
+        private string _connecting = ConfigurationManager.ConnectionStrings["DB_Crowdfunding"].ConnectionString;
         public void Add(Valideur entity)
         {
             using (SqlConnection connection = new SqlConnection(_connecting))
@@ -20,7 +21,7 @@ namespace DAL_Crowdfunding.Repositories
                     command.Parameters.AddWithValue("@status", entity.Status);
                     command.Parameters.AddWithValue("@commentaire", entity.Commentaire);
                     connection.Open();
-                    entity.UtilisateurId = (int)command.ExecuteScalar();
+                    entity.ValideurId = (int)command.ExecuteScalar();
                 }
             }
         }
@@ -55,8 +56,8 @@ namespace DAL_Crowdfunding.Repositories
                         {
                             yield return new Valideur()
                             {
-                                UtilisateurId = (int)reader["UtilisateurId"],
-                                Status = (string)reader["Status"],
+                                ValideurId = (int)reader["ValideurId"],
+                                Status = (bool)reader["Status"],
                                 Commentaire = (string)reader["Commentaire"],
 
                             };
@@ -74,7 +75,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Valideur_GetById";
-                    command.Parameters.AddWithValue("utilisateurId", id);
+                    command.Parameters.AddWithValue("valideurId", id);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -82,8 +83,8 @@ namespace DAL_Crowdfunding.Repositories
                         {
                             return new Valideur()
                             {
-                                UtilisateurId = (int)reader["UtilisateurId"],
-                                Status = (string)reader["Status"],
+                                ValideurId = (int)reader["ValideurId"],
+                                Status = (bool)reader["Status"],
                                 Commentaire = (string)reader["Commentaire"],
 
                             };
@@ -105,7 +106,7 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Valideur_Update";
-                    command.Parameters.AddWithValue("@utilisateurId", id);
+                    command.Parameters.AddWithValue("@valideurId", id);
                     command.Parameters.AddWithValue("@status", entity.Status);
                     command.Parameters.AddWithValue("@commentaire", entity.Commentaire);
                     connection.Open();
@@ -121,8 +122,9 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Valideur_Link";
-                    command.Parameters.AddWithValue("@utilisateurId", id);
+                    command.Parameters.AddWithValue("@valideurId", id);
                     command.Parameters.AddWithValue("@idProjet", id);
+                    command.Parameters.AddWithValue("@utilisateurId", id);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
@@ -137,8 +139,9 @@ namespace DAL_Crowdfunding.Repositories
                 {
                     command.CommandType = CommandType.StoredProcedure;
                     command.CommandText = "SP_Valideur_Unlink";
-                    command.Parameters.AddWithValue("@utilisateurId", id);
+                    command.Parameters.AddWithValue("@valideurId", id);
                     command.Parameters.AddWithValue("@idProjet", id);
+                    command.Parameters.AddWithValue("@utilisateurId", id);
                     connection.Open();
                     command.ExecuteNonQuery();
                 }

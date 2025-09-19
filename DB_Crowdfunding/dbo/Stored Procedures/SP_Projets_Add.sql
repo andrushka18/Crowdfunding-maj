@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Projets_Add]
-	@nom NVARCHAR(50),
-	@plafondFinance money = 0,
-	@numeroCompte NVARCHAR(50),
-	@urlVideo NVARCHAR(50)
+	@nom NVARCHAR(MAX),
+	@plafondFinance DECIMAL(10),
+	@numeroCompte NVARCHAR(MAX),
+	@urlVideo NVARCHAR(MAX)
 
 AS
 	INSERT INTO [Projets]([Nom],[PlafondFinance],[NumeroCompte],[UrlVideo]) OUTPUT inserted.IdProjet VALUES (@nom, @plafondFinance, @numeroCompte, @urlVideo)

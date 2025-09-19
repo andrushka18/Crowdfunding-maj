@@ -7,7 +7,8 @@ namespace DAL_Crowdfunding.Models
 {
     public class Valideur:Utilisateur
     {
-        public string Status { get; set; }
+        public int ValideurId { get; set; }
+        public bool Status { get; set; }
         public string Commentaire { get; set; }
     }
 }

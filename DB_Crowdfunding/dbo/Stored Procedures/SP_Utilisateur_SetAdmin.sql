@@ -2,4 +2,6 @@
 	@utilisateurId int,
 	@idDroit int
 AS
-	UPDATE [Droit] SET [NomDroit] = 'Administrateur' WHERE [IdDroit] = @idDroit 
+	 
+	UPDATE [Utilisateur] SET [Role] = 'Admin' WHERE [UtilisateurId] = @utilisateurId 
+	

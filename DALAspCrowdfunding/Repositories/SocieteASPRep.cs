@@ -9,17 +9,30 @@ namespace DALAspCrowdfunding.Repositories
 {
     public class SocieteASPRep : ISocieteRep<int, Societe>
     {
-        private static ISocieteRep<int, Societe> _entity;
-        public static ISocieteRep<int, Societe> Entity
-        {
-            get { return _entity ?? (_entity = new SocieteASPRep()); }
-        }
-
-        public Societe Delete(int id)
+        public void Add(Societe entity)
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure/");
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                string jsonContent = JsonConvert.SerializeObject(entity);
+                HttpContent httpContent = new StringContent(jsonContent);
+                HttpResponseMessage httpResponseMessage = httpClient.PostAsync("Societe", httpContent).Result;
+                httpResponseMessage.EnsureSuccessStatusCode();
+
+                string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                JsonConvert.DeserializeObject<Societe>(json);
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -27,7 +40,7 @@ namespace DALAspCrowdfunding.Repositories
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<Societe>(json);
+                 JsonConvert.DeserializeObject<Societe>(json);
             }
         }
 
@@ -35,7 +48,7 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -52,12 +65,12 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
 
-                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Societe").Result;
+                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Societe/"+id).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
@@ -69,7 +82,7 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -85,7 +98,7 @@ namespace DALAspCrowdfunding.Repositories
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+                httpClient.BaseAddress = new Uri("https://localhost:44356");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -98,11 +111,12 @@ namespace DALAspCrowdfunding.Repositories
             }
         }
 
-        void IRep<int, Societe>.Add(Societe entity)
+        public void Update(int id, Societe entity)
         {
             using (HttpClient httpClient = new HttpClient())
             {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
+
+                httpClient.BaseAddress = new Uri("https://localhost:44356/api/secure/");
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -110,40 +124,7 @@ namespace DALAspCrowdfunding.Repositories
                 HttpContent httpContent = new StringContent(jsonContent);
                 httpContent.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
 
-                HttpResponseMessage httpResponseMessage = httpClient.PostAsync("Societe", httpContent).Result;
-                httpResponseMessage.EnsureSuccessStatusCode();
-
-                string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
-                JsonConvert.DeserializeObject<Societe>(json);
-            }
-        }
-
-        void IRep<int, Societe>.Update(int id, Societe entity)
-        {
-            using (HttpClient httpClient = new HttpClient())
-            {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
-                httpClient.DefaultRequestHeaders.Accept.Clear();
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-
-                HttpResponseMessage httpResponseMessage = httpClient.GetAsync("Societe").Result;
-                httpResponseMessage.EnsureSuccessStatusCode();
-
-                string json = httpResponseMessage.Content.ReadAsStringAsync().Result;
-                JsonConvert.DeserializeObject<Societe>(json);
-            }
-        }
-
-        void IRep<int, Societe>.Delete(int id)
-        {
-            using (HttpClient httpClient = new HttpClient())
-            {
-                httpClient.BaseAddress = new Uri("https://localhost:44309");
-                httpClient.DefaultRequestHeaders.Accept.Clear();
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage httpResponseMessage = httpClient.DeleteAsync("Societe/" + id).Result;
+                HttpResponseMessage httpResponseMessage = httpClient.PutAsync("Societe/" +id, httpContent).Result;
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 string json = httpResponseMessage.Content.ReadAsStringAsync().Result;

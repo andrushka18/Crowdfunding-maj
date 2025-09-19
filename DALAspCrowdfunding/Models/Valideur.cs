@@ -8,8 +8,9 @@ namespace DALAspCrowdfunding.Models
 {
     public class Valideur:Utilisateur
     {
-        public string Status { get; set; }
+        public bool Status { get; set; }
         public string Commentaire { get; set; }
+        public int ValideurId { get; set; }
         
     }
 }

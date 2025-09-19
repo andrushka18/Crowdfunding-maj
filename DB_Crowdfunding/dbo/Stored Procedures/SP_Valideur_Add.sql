@@ -1,7 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Valideur_Add]
 
-	@status NVARCHAR(50),
-	@commentaire NVARCHAR(50)
+	@status BIT OUTPUT,
+	@commentaire NVARCHAR(MAX)
 
 AS
-	INSERT INTO [Valideur]([Status],[Commentaire]) OUTPUT inserted.UtilisateurId VALUES (@status, @commentaire)
+	SET @status= 1
+	INSERT INTO [Valideur]([Commentaire]) OUTPUT inserted.ValideurId VALUES (@commentaire)

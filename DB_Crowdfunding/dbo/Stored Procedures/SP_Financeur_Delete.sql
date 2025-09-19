@@ -1,4 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Financeur_Delete]
-	@utilisateurId int
+	@financeurId int
 AS
-	DELETE FROM [Financeur] WHERE [UtilisateurId] = @utilisateurId
+	DELETE FROM [Financeur] WHERE [FinanceurId] = @financeurId

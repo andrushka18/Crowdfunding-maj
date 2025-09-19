@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[SP_Valideur_Update]
-	@utilisateurId INT,
-	@status NVARCHAR(50), 
-	@commentaire NVARCHAR(50)
+	@valideurId INT,
+	@status BIT OUTPUT, 
+	@commentaire NVARCHAR(MAX)
 AS
-	UPDATE [Valideur] SET [Status] = @status , [Commentaire]= @commentaire WHERE [UtilisateurId] = @utilisateurId
+    
+	UPDATE [Valideur] SET  [Commentaire]= @commentaire WHERE [ValideurId] = @valideurId

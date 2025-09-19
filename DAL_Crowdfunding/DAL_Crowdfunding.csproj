@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\CompteUtilisateur.cs" />
     <Compile Include="Models\Droit.cs" />
     <Compile Include="Models\Employe.cs" />
     <Compile Include="Models\Financeur.cs" />
@@ -75,12 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DB_Crowdfunding\DB_Crowdfunding.sqlproj">
-      <Project>{7003eb38-8be4-4dc5-a218-548384b25fd4}</Project>
-      <Name>DB_Crowdfunding</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
